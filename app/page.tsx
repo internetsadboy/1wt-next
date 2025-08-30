@@ -116,21 +116,23 @@ export default function Home() {
           </section>
 
           {/* 9. Form */}
-          <section className="mt-10">
-            <h2 className="text-xl font-semibold mb-8">
+          <section className="mt-10 w-full max-w-lg bg-white">
+            {/* 1. Heading */}
+            <h2 className="bg-white text-xl font-semibold mb-6">
               Get notified when the film is released!
             </h2>
-            <form className="flex flex-col sm:flex-row gap-8">
+
+            {/* 2. Form */}
+            <form className="flex flex-col sm:flex-row w-full gap-4 text-lg">
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex bg-transparent border-b border-gray-400 focus:outline-none px-2 py-1"
                 required
+                className="flex-1 border-b border-gray-400 focus:outline-none px-2 py-2"
               />
               <button
                 type="submit"
-                style={{ backgroundColor: "black", color: "yellow" }}
-                className="text-black px-6 py-2 font-semibold border border-black rounded hover:bg-yellow-400 hover:text-black transition hover:cursor-pointer"
+                className="bg-black text-white hover:cursor-pointer px-6 py-2 font-semibold border border-black rounded"
               >
                 Submit
               </button>
