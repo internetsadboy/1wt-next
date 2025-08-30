@@ -105,14 +105,14 @@ export default function Home() {
           </section>
 
           {/* 8. Other Info */}
-          <section className="mt-10 sm:gap-2 gap-4 flex flex-col">
+          <section className="mt-10 sm:gap-2 gap-4 sm:gap-0 flex flex-col">
             <p>
               <span className="font-semibold black-bg mr-2">STATUS</span> POST-PRODUCTION
             </p>
             <p className="tracking-wide">
-              <span className="font-semibold black-bg mr-4">GENRE</span>This project can be described as <span className="uppercase yellow-bg">guerilla filmmaking</span>
+              <span className="font-semibold black-bg mr-4">GENRE</span>This project can be described as <br className="block sm:hidden" /><br className="block sm:hidden" /> <span className="uppercase yellow-bg text-[55px] sm:text-[16px]">guerilla filmmaking</span>
             </p>
-            <p className="mt-8">Filming began in November 2015, unknowingly.</p>
+            <p className="mt-1 sm:mt-8">Filming began in November 2015, unknowingly.</p>
           </section>
 
           {/* 9. Form */}
