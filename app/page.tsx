@@ -1,101 +1,170 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+
+import { AtSymbolIcon, EnvelopeIcon, PuzzlePieceIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-5 sm:pb-20">     
+      <main className="flex flex-col row-start-2 items-center sm:items-start mb-10">
+        <div className="max-w-3xl mx-auto space-y-4">
+          {/* 1. "Header" */}
+           <section id="header" className="flex flex-col sm:gap-4 gap-4">
+            <h1 className="text-4xl sm:text-5xl font-bold">
+              One Way Tix
+            </h1>
+            <p className="">
+              A documentary feature film <span className="font-bold">10 years</span> in the making.
+            </p>
+            <p className="yellow-bg">
+              <span className="">Anticipated Release{" "}</span>
+              <span className="">Jan 22, 2026</span>
+            </p>
+          </section>
+          {/* 3. Synopsis */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-4 black-bg">SYNPOSIS</h2>
+            <p className="leading-relaxed">
+              A guy buys a one way ticket to Asia
+              {" "}<span className="font-bold">determined to make a documentary</span>{" "}
+              with no money, no experience, and no direction. He attempts to show that travel is accessible by
+              {" "}<span className="font-bold"> working for food and shelter</span>{" "}
+              but his obsession surfaces; being
+              {" "}<span className="font-bold"> on the run from materialism.</span>{" "}
+              The expedition ends near the Siberian border herding
+              cattle. Is the documentary about Jenny? The Monks? Angela, the dead
+              piglet? Obama, the unriddeable horse in Mongolia? The Actor? The
+              Colorado Dropout? The Deadliest Catch boat? Mysterious characters
+              appear and guide him along the way. Overwhelmed, he buries the project. 
+              {" "}<span className="font-bold">Six years later</span>{" "}
+              later he learns that
+              {" "}<span className="font-bold">Asia was only the beginning</span>{" "}
+              of becoming a documentary filmmaker.
+            </p>
+          </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* 4. Countries */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-4 black-bg">COUNTRIES</h2>
+            <ul className="grid grid-cols-1 gap-0" style={{fontSize: 16}}>
+              {[
+                "FRANCE",
+                "US",
+                "INDONESIA",
+                "MALAYSIA",
+                "VIET NAM",
+                "HONG KONG",
+                "NEPAL",
+                '"TIBET"',
+                "CHINA",
+                "MONGOLIA",
+              ].map((c) => (
+                <li 
+                  key={c}
+                  className="yellow-bg">
+                    {c}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* 5. Trailer */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-4 black-bg">TRAILER</h2>
+            <div className="aspect-video w-full">
+              <iframe
+                src="https://player.vimeo.com/video/1083081464?title=0&byline=0&portrait=0&badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                frameBorder="0"
+                className="w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                title="ONE WAY TIX - Unofficial Trailer"
+              ></iframe>
+            </div>
+          </section>
+
+          {/* 6. Themes */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-4 black-bg">THEMES</h2>
+            <ul className="list-disc list-inside space-y-1">
+              {[
+                "Escaping Materialism",
+                "Animal Consumption",
+                "Self-Discovery",
+                "Manifestation",
+                "Friendship",
+                "Adventure",
+                "Death",
+                "Self-Sabotage",
+                "Mental Health",
+              ].map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </section>
+
+          {/* 8. Other Info */}
+          <section className="mt-10 sm:gap-2 gap-4 flex flex-col">
+            <p>
+              <span className="font-semibold black-bg mr-2">STATUS</span> POST-PRODUCTION
+            </p>
+            <p className="tracking-wide">
+              <span className="font-semibold black-bg mr-4">GENRE</span>This project can be described as <span className="uppercase yellow-bg">guerilla filmmaking</span>
+            </p>
+            <p className="mt-8">Filming began in November 2015, unknowingly.</p>
+          </section>
+
+          {/* 9. Form */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-8">
+              Get notified when the film is released!
+            </h2>
+            <form className="flex flex-col sm:flex-row gap-8">
+              <input
+                type="email"
+                placeholder="Your email"
+                className="flex bg-transparent border-b border-gray-400 focus:outline-none px-2 py-1"
+                required
+              />
+              <button
+                type="submit"
+                style={{ backgroundColor: "black", color: "yellow" }}
+                className="text-black px-6 py-2 font-semibold border border-black rounded hover:bg-yellow-400 hover:text-black transition hover:cursor-pointer"
+              >
+                Submit
+              </button>
+            </form>
+          </section>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="row-start-3 flex flex-wrap items-center my-20 gap-4">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://www.tiktok.com/@onewaytix.documentary"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          <AtSymbolIcon className="h-4 w-4" aria-hidden />
+          TikTok
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://www.kickstarter.com/projects/itsjl/one-way-tickets"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
+          <PuzzlePieceIcon className="h-4 w-4" aria-hidden />
+          The Kickstarter
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="mailto:jaredlamont90@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
+          <EnvelopeIcon className="h-4 w-4" aria-hidden />
+          Contact
         </a>
       </footer>
     </div>
