@@ -7,8 +7,8 @@ import { AtSymbolIcon, EnvelopeIcon, PuzzlePieceIcon } from "@heroicons/react/24
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-5 sm:pb-20">     
-      <main className="flex flex-col row-start-2 items-center sm:items-start mb-10">
+    <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-5 pb-8">     
+      <main className="flex flex-col row-start-2 items-center sm:items-start mb-8">
         <div className="max-w-3xl mx-auto space-y-4">
           {/* 1. "Header" */}
            <section id="header" className="flex flex-col sm:gap-4 gap-4">
@@ -138,7 +138,7 @@ export default function Home() {
           </section>
         </div>
       </main>
-      <footer className="row-start-3 flex flex-wrap items-center my-20 gap-4">
+      <footer className="row-start-3 flex flex-wrap items-center my-2 gap-4 sm:mt-12 sm:mb-0">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://www.tiktok.com/@onewaytix.documentary"
