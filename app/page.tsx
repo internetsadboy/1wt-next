@@ -8,7 +8,7 @@ import { AtSymbolIcon, EnvelopeIcon, PuzzlePieceIcon } from "@heroicons/react/24
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-5 pb-8">     
-      <main className="flex flex-col row-start-2 items-center sm:items-start mb-8">
+      <main className="sm:mt-10 mt-2 flex flex-col row-start-2 items-center sm:items-start mb-8">
         <div className="max-w-3xl mx-auto space-y-4">
           {/* 1. "Header" */}
            <section id="header" className="flex flex-col sm:gap-4 gap-4">
@@ -19,7 +19,7 @@ export default function Home() {
               A documentary feature film <span className="font-bold">10 years</span> in the making.
             </p>
             <p className="yellow-bg">
-              <span className="">Anticipated Release{" "}</span>
+              <span className="">Anticipated Release{": "}</span>
               <span className="">Jan 22, 2026</span>
             </p>
           </section>
