@@ -1,5 +1,9 @@
 "use client";
 
+import React, { useState } from "react";
+
+import EmailSignup from "./components/EmailSignup";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +14,7 @@ export default function Home() {
     <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-5 pb-8">     
       <main className="sm:mt-10 mt-2 flex flex-col row-start-2 items-center sm:items-start mb-8">
         <div className="max-w-3xl mx-auto space-y-4">
-          {/* 1. "Header" */}
+          {/* "Header" */}
            <section id="header" className="flex flex-col sm:gap-4 gap-4">
             <h1 className="text-4xl sm:text-5xl font-bold">
               One Way Tix
@@ -23,7 +27,7 @@ export default function Home() {
               <span className="">Jan 22, 2026</span>
             </p>
           </section>
-          {/* 3. Synopsis */}
+          {/* Synopsis */}
           <section className="mt-10">
             <h2 className="text-xl font-semibold mb-4 black-bg">SYNPOSIS</h2>
             <p className="leading-relaxed">
@@ -45,7 +49,7 @@ export default function Home() {
             </p>
           </section>
 
-          {/* 4. Countries */}
+          {/* Countries */}
           <section className="mt-10">
             <h2 className="text-xl font-semibold mb-4 black-bg">COUNTRIES</h2>
             <ul className="grid grid-cols-1 gap-0" style={{fontSize: 16}}>
@@ -70,7 +74,7 @@ export default function Home() {
             </ul>
           </section>
 
-          {/* 5. Trailer */}
+          {/* Trailer */}
           <section className="mt-10">
             <h2 className="text-xl font-semibold mb-4 black-bg">TRAILER</h2>
             <div className="aspect-video w-full">
@@ -84,7 +88,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* 6. Themes */}
+          {/* Themes */}
           <section className="mt-10">
             <h2 className="text-xl font-semibold mb-4 black-bg">THEMES</h2>
             <ul className="list-disc list-inside space-y-1">
@@ -104,7 +108,7 @@ export default function Home() {
             </ul>
           </section>
 
-          {/* 8. Other Info */}
+          {/* Other Info */}
           <section className="mt-10 sm:gap-2 gap-4 sm:gap-0 flex flex-col">
             <p>
               <span className="font-semibold black-bg mr-2">STATUS</span> POST-PRODUCTION
@@ -115,29 +119,8 @@ export default function Home() {
             <p className="mt-1 sm:mt-8">Filming began in November 2015, unknowingly.</p>
           </section>
 
-          {/* 9. Form */}
-          <section className="mt-10 w-full max-w-lg bg-white">
-            {/* 1. Heading */}
-            <h2 className="bg-white text-xl font-semibold mb-6">
-              Get notified when the film is released!
-            </h2>
-
-            {/* 2. Form */}
-            <form className="flex flex-col sm:flex-row w-full gap-4 text-lg">
-              <input
-                type="email"
-                placeholder="Your email"
-                required
-                className="flex-1 border-b border-gray-400 focus:outline-none px-2 py-2"
-              />
-              <button
-                type="submit"
-                className="bg-black text-white hover:cursor-pointer px-6 py-2 font-semibold border border-black rounded"
-              >
-                Submit
-              </button>
-            </form>
-          </section>
+          {/* Form */}
+          <EmailSignup />
         </div>
       </main>
       <footer className="row-start-3 flex flex-wrap items-center my-2 gap-4 sm:mt-12 sm:mb-0">
