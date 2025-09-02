@@ -16,7 +16,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto space-y-4">
           {/* "Header" */}
            <section id="header" className="flex flex-col sm:gap-4 gap-4">
-            <h1 className="text-4xl sm:text-5xl font-bold">
+            <h1 className="text-4xl sm:text-5xl font-bold uppercase">
               One Way Tix
             </h1>
             <p className="">
