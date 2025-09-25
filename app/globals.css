@@ -48,3 +48,13 @@ body {
     padding: 0 6px !important;
     font-weight: bold;
 }
+
+.courier {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.bg-yellow {
+    background-color: #ff0;
+    border: none;
+    padding: 2px 3px;
+}
