@@ -32,6 +32,22 @@ export default function LogPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    // grab new entry value
+    fetch("/api/count")
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (typeof data.count === "number") {
+          document.title = `LOG (#${data.count})`;
+        }
+      })
+      .catch((e) => console.error("Failed to fetch count:", e));
+
+    // grab entries
     fetch("/api/entry?limit=10&offset=0") // or /api/entries if that's your route
       .then(async (r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -48,14 +64,17 @@ export default function LogPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="p-6">Loading…</div>;
+  if (loading) return <div className="max-w-3xl sm:p-6 px-6 sm:px-16 pt-8 sm:pt-12">Loading…</div>;
   if (error) return <div className="p-6 text-red-600">Error: {error}</div>;
 
   
   return (
-    <main className="max-w-3xl p-6 px-16 pt-12">
-      <h1 className="mb-4 text-2xl font-semibold">Editing Log</h1>
-      <div className="overflow-x-auto border-gray-200">
+    <main className="max-w-3xl sm:p-6 px-6 sm:px-16 pt-8 sm:pt-12">
+      <div className="mb-4">
+        <h1 className="mb-1 text-5xl font-semibold">LOG</h1>
+        <h2 className="text-lg">Keep editing</h2>
+      </div>  
+      <div className="border-gray-200">
         {entries.length === 0 ? (
             <div>
             <p className="py-6 text-center text-gray-500">
@@ -72,7 +91,7 @@ export default function LogPage() {
                                 {e.entry_date.split('T')[0].slice(5)}{" "}
                         </span>
                     </p>
-                    <p className="max-w-[22rem] truncate" title={e.notes ?? ""}>
+                    <p className="max-w-[22rem]" title={e.notes ?? ""}>
                         {e.notes ?? "—"}
                     </p>
                     <div className="flex flex-wrap gap-4">
