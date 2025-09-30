@@ -6,8 +6,17 @@ export default function NewEntryPage() {
   const [startMinutes, setStartMinutes] = useState("");
   const [endMinutes, setEndMinutes] = useState("");
   const [notes, setNotes] = useState("");
-  const [entryNumber, setEntryNumber] = useState(0);
+  const [entryNumber, setEntryNumber] = useState("...");
+  const [entryDate, setEntryDate] = useState(getLocalDateString());
 
+  function getLocalDateString() {
+    const d = new Date();
+    return [
+      d.getFullYear(),
+      String(d.getMonth() + 1).padStart(2, "0"),
+      String(d.getDate()).padStart(2, "0"),
+    ].join("-");
+  }
 
   useEffect(() => {
     // grab for new entry value
@@ -47,7 +56,7 @@ export default function NewEntryPage() {
       start_minutes: timeToMinutes(startMinutes),
       end_minutes: timeToMinutes(endMinutes),
       notes,
-      entry_date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
+      entry_date: entryDate
     };
 
     console.log(payload);
@@ -73,17 +82,26 @@ export default function NewEntryPage() {
     }
   }
 
+  console.log(`${new Date().toLocaleDateString()} ${startMinutes} - ${endMinutes}`);
   return (
-    <main className="max-w-3xl p-6 px-16 pt-12">
+    <main className="max-w-3xl p-6 sm:px-16 pt-12">
       <form 
-        className="flex flex-col w-fit gap-8 border-gray-200" 
-        style={{width:500}} 
+        className="flex flex-col w-full max-w-md gap-8 border-gray-200" 
         onSubmit={handleSubmit}
       >
         <header className="tracking-wide">
-          <h1 className="text-xl font-bold mb-2">New Log Entry <span className="font-normal px-1">[ {entryNumber} ]</span></h1>
-          <h2>Date: {`${new Date().toLocaleDateString()}`}</h2>
+          <h1 className="text-xl font-bold mb-2">New Log Entry <span className="font-normal px-1">[ {entryNumber} ]</span></h1>          
         </header>
+        <div className="flex flex-col gap-1">
+          <label className="font-medium">Date</label>
+          <input
+            type="date"
+            className="border rounded-md px-3 py-2"
+            value={entryDate}
+            onChange={(e) => setEntryDate(e.target.value)}
+            required
+          />
+        </div>
         <div className="flex flex-col flex gap-2">
           <label htmlFor="start_minutes">Start</label>
           <input 
@@ -114,7 +132,10 @@ export default function NewEntryPage() {
         </div>
         <div className="flex flex-col flex gap-2">
           <label htmlFor="notes" id="notes">Notes</label>
-          <div className="text-sm">Characters {notes.length}</div>
+          <div 
+            className={`text-sm ${notes.length > 100 ? "text-red-500" : ""}`}>
+              Characters {notes.length}
+          </div>
           <textarea 
             className="p-2 border border-gray-200" 
             id="notes" 
