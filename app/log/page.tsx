@@ -30,8 +30,21 @@ export default function LogPage() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [totalHours, setTotalHours] = useState<number | null>(null);
 
   useEffect(() => {
+
+    fetch("/api/hours")
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        const totalHours = Number(data.total_hours);
+        setTotalHours(totalHours);
+        console.log(`Fetched hours: ${totalHours}`);
+      })
+      .catch((e) => console.error("Failed to fetch hours:", e));
 
     // grab new entry value
     fetch("/api/count")
@@ -72,8 +85,9 @@ export default function LogPage() {
     <main className="max-w-3xl sm:p-6 px-6 sm:px-16 pt-8 sm:pt-12">
       <div className="mb-4">
         <h1 className="mb-1 text-5xl font-semibold">LOG</h1>
+        <h1 className="text-2xl courier">Total hours: {totalHours}</h1>
         <h2 className="text-lg">Keep editing</h2>
-      </div>  
+      </div>
       <div className="border-gray-200">
         {entries.length === 0 ? (
             <div>
