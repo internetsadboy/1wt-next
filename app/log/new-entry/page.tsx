@@ -147,6 +147,7 @@ export default function NewEntryPage() {
             }}
           />
         </div>
+        <div>Location: Street, Neighborhood, City</div>
         <button
           type="submit"
           disabled={false}
