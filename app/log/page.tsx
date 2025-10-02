@@ -26,11 +26,20 @@ type Entry = {
   notes?: string | null;
 };
 
+// used for hours analytics, top of page
+type HoursData = {
+  total: number;
+  month: number;
+  week: number;
+  today: number;
+};
+
 export default function LogPage() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [totalHours, setTotalHours] = useState<number | null>(null);
+  const [hoursData, setHoursData] = useState<HoursData | null>(null);
+  const [lastUpdated, setLastUpdated] = useState("--");
 
   useEffect(() => {
 
@@ -40,9 +49,8 @@ export default function LogPage() {
         return res.json();
       })
       .then((data) => {
-        const totalHours = Number(data.total_hours);
-        setTotalHours(totalHours);
-        console.log(`Fetched hours: ${totalHours}`);
+        setHoursData(data);
+        console.log(`Fetched hours data: ${data}`);
       })
       .catch((e) => console.error("Failed to fetch hours:", e));
 
@@ -57,6 +65,8 @@ export default function LogPage() {
         if (typeof data.count === "number") {
           document.title = `LOG (#${data.count})`;
         }
+        // add timestamp
+        setLastUpdated(new Date().toLocaleTimeString());
       })
       .catch((e) => console.error("Failed to fetch count:", e));
 
@@ -83,10 +93,40 @@ export default function LogPage() {
   
   return (
     <main className="max-w-3xl sm:p-6 px-6 sm:px-16 pt-8 sm:pt-12">
-      <div className="mb-4">
-        <h1 className="mb-1 text-5xl font-semibold">LOG</h1>
-        <h1 className="text-2xl courier">Total hours: {totalHours}</h1>
-        <h2 className="text-lg">Keep editing</h2>
+      <div className="mb-4 flex flex-col gap-2 tracking-wide">
+        <h1 className="text-5xl font-semibold ">LOG</h1>
+        <div className="flex flex-col gap-1 tracking-[1px] mt-2">
+          <p className="text-lg">
+            <span className="font-bold black-bg">{hoursData ? hoursData.total : ''}</span>
+            {' '}
+            <span className="ml-1 underline uppercase underline-offset-4 decoration-1">
+              Total hours
+            </span> 
+          </p>
+          <p className="text-lg">
+            <span className="font-bold black-bg">{hoursData ? hoursData.month : ''}</span>
+            {' '}
+            <span className="ml-1 underline uppercase underline-offset-4 decoration-1">
+             Month
+            </span>              
+          </p>
+          <p className="text-lg">
+            <span className="font-bold black-bg">{hoursData ? hoursData.week : ''}</span>
+            {' '}
+            <span className="ml-1 underline uppercase underline-offset-4 decoration-1">
+              Week
+            </span>
+          </p>
+          <p className="text-lg">
+            <span className="font-bold black-bg">{hoursData ? hoursData.today : ''}</span>
+            {' '}
+            <span className="ml-1 underline uppercase underline-offset-4 decoration-1">
+              Today
+            </span>
+          </p>
+        </div>
+        <p>Digital tracking began on 9-27-25</p>
+        <p className="text-sm">Last updated: {lastUpdated}</p>
       </div>
       <div className="border-gray-200">
         {entries.length === 0 ? (
