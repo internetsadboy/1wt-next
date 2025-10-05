@@ -1,6 +1,13 @@
 "use client";
 
 import React, {useState, useEffect} from "react";
+import { set } from "zod";
+
+type Address = {
+  street: string,
+  neighborhood: string,
+  city: string
+};
 
 export default function NewEntryPage() {
   const [startMinutes, setStartMinutes] = useState("");
@@ -8,6 +15,11 @@ export default function NewEntryPage() {
   const [notes, setNotes] = useState("");
   const [entryNumber, setEntryNumber] = useState("...");
   const [entryDate, setEntryDate] = useState(getLocalDateString());
+  const [address, setAddress] = useState<Address>({
+      street: "",
+      neighborhood: "",
+      city: ""
+    });
 
   function getLocalDateString() {
     const d = new Date();
@@ -19,6 +31,26 @@ export default function NewEntryPage() {
   }
 
   useEffect(() => {
+    if (!("geolocation" in navigator)) return;
+
+    // grab geoloc tag
+    navigator.geolocation.getCurrentPosition(async (p) => { 
+        const { latitude, longitude } = p.coords;
+        console.log(`lat ${latitude}, lon ${longitude}`);
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        );
+        const data = await res.json();
+        console.log(data)
+
+        console.log(`${data.address.road}, ${data.address.neighbourhood}, ${data.address.city}`);
+        setAddress({
+          street: data.address.road || '',
+          neighborhood: data.address.neighbourhood || '',
+          city: data.address.city || ''
+        });
+    });
+  
     // grab for new entry value
     fetch("/api/count")
       .then((res) => {
@@ -147,7 +179,7 @@ export default function NewEntryPage() {
             }}
           />
         </div>
-        <div>Location: Street, Neighborhood, City</div>
+        <div>Location: {address.street}, {address.neighborhood}, {address.city}</div>
         <button
           type="submit"
           disabled={false}
